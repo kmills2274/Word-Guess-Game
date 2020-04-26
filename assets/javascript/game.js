@@ -7,7 +7,27 @@ alert("Press any letter key to make your guess!");
      "muggle",
      "wizard",
      "wand",
-     "magic"
+     "magic",
+     "potions",
+     "horcrux",
+     "snitch",
+     "patronus",
+     "quaffle",
+     "seeker",
+     "auror",
+     "beater",
+     "witch",
+     "mudblood",
+     "deatheater",
+     "gryffindor",
+     "hufflepuff",
+     "ravenclaw",
+     "slytherin",
+     "hogwarts",
+     "charm",
+     "goblet",
+     "quidditch",
+
  ];
 
  const guessLimit = 10;
@@ -40,19 +60,18 @@ function checkForLetter(letter) {
 
     for (var i=0, j= currentWord.length; i<j; i++) {
         if (letter === currentWord[i]) {
-            wordGuess[i] = letter
-            foundLetter = true
+            wordGuess[i] = letter;
+            foundLetter = true;
         
             // If word guess matches current word
             if (wordGuess.join("") === currentWord) {
                // Play win sound
                winSound.play()
                 // Update number of wins
-                wins++
-                pauseGame = true
-                
-                updateDisplay()
-                setTimeout(resetGame,5000)
+                wins++;
+                pauseGame = true;
+                updateDisplay();
+                setTimeout(resetGame,1000);
             }; // 2nd if statement end
         }; // 1st if statement end
     }; // for loop end
@@ -70,9 +89,9 @@ function checkForLetter(letter) {
             // Play loss sound
             lossSound.play()
             // Display answer before reseting the game
-            wordGuess = currentWord.split()
-            pauseGame = true
-            setTimeout(resetGame, 5000)
+            wordGuess = currentWord.split();
+            pauseGame = true;
+            setTimeout(resetGame, 1000);
         }; // 3rd if statement end
         }; // 2nd if statement end
 
@@ -91,19 +110,19 @@ function resetGame() {
     pauseGame = false
 
     // Get a new key word
-    currentWord = keyWord[Math.floor(Math.random() * keyWord.length)].toLowerCase()
-    console.log(currentWord)
+    currentWord = keyWord[Math.floor(Math.random() * keyWord.length)].toLowerCase();
+    console.log(currentWord);
 
     // Reset word arrays
     lettersGuessed = []
     wordGuess = []
 
-    // Reset the guessed word
+    // Set underscores in place of currentWord
     for (var i=0, j=currentWord.length; i < j; i++){
         if (currentWord[i] === " ") {
             wordGuess.push(" ")
         } else {
-            wordGuess.push("__ ")
+            wordGuess.push(" __ ")
         }
     }; // end of for loop
 
@@ -113,10 +132,10 @@ function resetGame() {
 
 // Function to update the display
 function updateDisplay () {
-    document.getElementById("totalWins").innerText = wins
-    document.getElementById("currentWord").innerText = wordGuess.join("")
-    document.getElementById("remainingGuesses").innerText = numberOfGuesses
-    document.getElementById("guessedLetters").innerText =  lettersGuessed.join(" ")
+    document.getElementById("totalWins").innerText = wins;
+    document.getElementById("currentWord").innerText = wordGuess.join("");
+    document.getElementById("remainingGuesses").innerText = numberOfGuesses;
+    document.getElementById("guessedLetters").innerText =  lettersGuessed.join(" ");
 }; // End of function
 
 }) // End of document.ready function
